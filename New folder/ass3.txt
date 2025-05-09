@@ -1,0 +1,42 @@
+🔹 1. Numeric Functions
+These operate on numeric data types and return numeric results.
+
+Function	Description	Example
+ABS()	Absolute value	SELECT ABS(-20); → 20
+ROUND()	Rounds to decimal places	SELECT ROUND(123.4567, 2); → 123.46
+CEIL() / CEILING()	Rounds up	SELECT CEIL(4.2); → 5
+FLOOR()	Rounds down	SELECT FLOOR(4.8); → 4
+MOD()	Returns remainder	SELECT MOD(10, 3); → 1
+POWER()	Exponentiation	SELECT POWER(2, 3); → 8
+
+🔹 2. Aggregate Functions
+Used to perform calculations on multiple values and return a single result.
+
+Function	Description	Example
+COUNT()	Counts rows	SELECT COUNT(*) FROM students;
+SUM()	Adds values	SELECT SUM(age) FROM students;
+AVG()	Average value	SELECT AVG(age) FROM students;
+MAX()	Maximum	SELECT MAX(age) FROM students;
+MIN()	Minimum	SELECT MIN(age) FROM students;
+
+🔹 3. Character (String) Functions
+Used for string manipulation.
+
+Function	Description	Example
+LENGTH()	Returns length	SELECT LENGTH('Ravi'); → 4
+UPPER()	Converts to uppercase	SELECT UPPER('ravi'); → RAVI
+LOWER()	Converts to lowercase	SELECT LOWER('RAVI'); → ravi
+CONCAT()	Concatenates strings	SELECT CONCAT('Hello', ' World');
+SUBSTRING() / SUBSTR()	Extracts part of string	SELECT SUBSTRING('student', 1, 4); → 'stud'
+REPLACE()	Replaces substring	SELECT REPLACE('CSE Dept', 'CSE', 'IT'); → 'IT Dept'
+
+🔹 4. Date Functions
+Used to operate on date and time values.
+
+Function	Description	Example
+CURDATE() / CURRENT_DATE	Current date	SELECT CURDATE();
+NOW()	Current date and time	SELECT NOW();
+YEAR()	Extracts year	SELECT YEAR('2025-05-09'); → 2025
+MONTH()	Extracts month	SELECT MONTH('2025-05-09'); → 5
+DAY()	Extracts day	SELECT DAY('2025-05-09'); → 9
+DATEDIFF()	Difference between two dates	SELECT DATEDIFF('2025-05-09', '2025-01-01'); → 128

@@ -1,0 +1,36 @@
+
+-- Assume the 'students' table:
+-- Columns: student_id, name, age, department_id, marks
+
+-- GROUP BY: Count students per department
+SELECT department_id, COUNT(*) AS student_count
+FROM students
+GROUP BY department_id;
+
+-- GROUP BY with aggregation: Average marks per department
+SELECT department_id, AVG(marks) AS avg_marks
+FROM students
+GROUP BY department_id;
+
+-- HAVING: Filter aggregated groups (only departments with avg marks > 70)
+SELECT department_id, AVG(marks) AS avg_marks
+FROM students
+GROUP BY department_id
+HAVING AVG(marks) > 70;
+
+-- ORDER BY: Sort students by marks in descending order
+SELECT * FROM students
+ORDER BY marks DESC;
+
+-- ORDER BY multiple columns: First by department, then marks
+SELECT * FROM students
+ORDER BY department_id ASC, marks DESC;
+
+-- INDEXING: Create index on marks to speed up queries involving marks
+CREATE INDEX idx_marks ON students(marks);
+
+-- INDEXING: Composite index on department_id and marks
+CREATE INDEX idx_dept_marks ON students(department_id, marks);
+
+-- View existing indexes (MySQL)
+SHOW INDEX FROM students;
