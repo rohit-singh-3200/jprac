@@ -1,0 +1,29 @@
+
+# Install mlxtend if missing (uncomment if needed)
+# !pip install mlxtend
+
+import pandas as pd
+from mlxtend.frequent_patterns import apriori, association_rules
+
+# Sample transaction data (one-hot)
+dataset = [
+    ['Milk','Bread','Butter'],
+    ['Bread','Diaper','Beer','Eggs'],
+    ['Milk','Diaper','Beer','Coke'],
+    ['Bread','Milk','Diaper','Beer'],
+    ['Bread','Milk','Diaper','Coke']
+]
+
+# Create one-hot encoded DataFrame
+from collections import defaultdict
+items = sorted({item for trans in dataset for item in trans})
+encoded = []
+for trans in dataset:
+    row = {item: (1 if item in trans else 0) for item in items}
+    encoded.append(row)
+df = pd.DataFrame(encoded)
+
+freq = apriori(df, min_support=0.4, use_colnames=True)
+rules = association_rules(freq, metric='lift', min_threshold=1.0)
+print('Frequent itemsets:\n', freq)
+print('\nAssociation rules:\n', rules[['antecedents','consequents','support','confidence','lift']])

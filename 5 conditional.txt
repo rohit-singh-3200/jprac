@@ -1,0 +1,40 @@
+# Problem 1: Conditional filtering with if-else
+scores = [45,67,89,72,91,58]
+for s in scores:
+    if s >= 85:
+        print(s, '-> Excellent')
+    elif s >= 70:
+        print(s, '-> Good')
+    else:
+        print(s, '-> Needs Improvement')
+
+
+# Problem 2: For loop to compute cumulative sum
+cum = 0
+for i, val in enumerate(scores, start=1):
+    cum += val
+    print(f'After {i} items, cumulative =', cum)
+
+
+
+# Problem 3: While loop with break/continue
+i = 0
+while i < len(scores):
+    if scores[i] < 50:
+        i += 1
+        continue
+    print('Score >=50 at index', i, 'value', scores[i])
+    i += 1
+
+
+
+# Problem 4: List comprehension example (square of even numbers)
+squares_even = [x*x for x in range(1,11) if x%2==0]
+squares_even
+
+
+# Problem 5: Combining control structures with pandas
+import pandas as pd
+df = pd.DataFrame({'id':range(1,11),'val':[5,12,7,20,25,18,9,2,30,11]})
+df['category'] = ['High' if v>15 else 'Medium' if v>8 else 'Low' for v in df['val']]
+df.head()

@@ -1,0 +1,40 @@
+
+# Tiny demo dataset and pipeline (no external files required)
+import pandas as pd
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score, classification_report
+
+data = {'text':[
+    'government releases new policy on education',
+    'shocking! celebrity did not die, it was fake',
+    'new study shows benefits of daily exercise',
+    'click here to win prize, this is not real news',
+    'local team wins championship in final match',
+    'you will be surprised to know this secret truth'
+], 'label':[0,1,0,1,0,1]} # 0 = real, 1 = fake (synthetic labels)
+
+df = pd.DataFrame(data)
+X = df['text']
+y = df['label']
+
+v = TfidfVectorizer(ngram_range=(1,2), max_features=500)
+Xv = v.fit_transform(X)
+X_train, X_test, y_train, y_test = train_test_split(Xv, y, test_size=0.33, random_state=42)
+
+model = LogisticRegression()
+model.fit(X_train, y_train)
+pred = model.predict(X_test)
+print('Accuracy:', accuracy_score(y_test, pred))
+print(classification_report(y_test, pred))
+
+# Simple function to predict new text (simulate real-time usage)
+def predict_text(s):
+    tv = v.transform([s])
+    p = model.predict(tv)[0]
+    return 'FAKE' if p==1 else 'REAL'
+
+print('\nExamples:')
+print('Input: "urgent! win a car" ->', predict_text('urgent! win a car'))
+print('Input: "government announces new health program" ->', predict_text('government announces new health program'))
